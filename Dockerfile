@@ -66,17 +66,17 @@ CMD /usr/local/sbin/couchbase
 # CMD ["nginx"]
 
 # Expose ports.
-EXPOSE 80
-EXPOSE 443
+# EXPOSE 80
+# EXPOSE 443
 
-### Installing Elasticsearch 0.90.2
-RUN apt-get install openjdk-7-jre-headless
-RUN wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.2.deb
-RUN dpkg -i elasticsearch
+# ### Installing Elasticsearch 0.90.2
+# RUN apt-get install openjdk-7-jre-headless
+# RUN wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.2.deb
+# RUN dpkg -i elasticsearch
 
-EXPOSE 22
-EXPOSE 9200
-EXPOSE 9300
+# EXPOSE 22
+# EXPOSE 9200
+# EXPOSE 9300
 
 ### Installing Kibana 
 # Should a variation of specific nginx  be installed, 1.7 is the proposed
