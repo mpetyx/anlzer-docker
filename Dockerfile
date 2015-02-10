@@ -51,3 +51,8 @@ RUN chmod 755 /usr/local/sbin/couchbase
 EXPOSE 7081 8092 11210
 
 CMD /usr/local/sbin/couchbase
+
+### Installing Elasticsearch 0.90.2
+RUN sudo aptitude install openjdk-7-jre-headless
+RUN wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.7.deb
+RUN sudo dpkg -i elasticsearch
