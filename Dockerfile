@@ -48,22 +48,22 @@ EXPOSE 7081 8092 11210
 CMD /usr/local/sbin/couchbase
 
 # Install Nginx.
-RUN \
-  add-apt-repository -y ppa:nginx/stable && \
-  apt-get update && \
-  apt-get install -y nginx && \
-  rm -rf /var/lib/apt/lists/* && \
-  echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
-  chown -R www-data:www-data /var/lib/nginx
+# RUN \
+#   add-apt-repository -y ppa:nginx/stable && \
+#   apt-get update && \
+#   apt-get install -y nginx && \
+#   rm -rf /var/lib/apt/lists/* && \
+#   echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
+#   chown -R www-data:www-data /var/lib/nginx
 
-# Define mountable directories.
-VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
+# # Define mountable directories.
+# VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
 
-# Define working directory.
-WORKDIR /etc/nginx
+# # Define working directory.
+# WORKDIR /etc/nginx
 
-# Define default command.
-CMD ["nginx"]
+# # Define default command.
+# CMD ["nginx"]
 
 # Expose ports.
 EXPOSE 80
@@ -80,12 +80,12 @@ EXPOSE 9300
 
 ### Installing Kibana 
 # Should a variation of specific nginx  be installed, 1.7 is the proposed
+# 
+# ADD https://download.elasticsearch.org/kibana/kibana/kibana-3.1.0.tar.gz /tmp/kibana.tar.gz
+# ADD run.sh /usr/local/bin/run
 
-ADD https://download.elasticsearch.org/kibana/kibana/kibana-3.1.0.tar.gz /tmp/kibana.tar.gz
-ADD run.sh /usr/local/bin/run
+# RUN tar zxf /tmp/kibana.tar.gz && mv kibana-3.1.0/* /usr/share/nginx/html
 
-RUN tar zxf /tmp/kibana.tar.gz && mv kibana-3.1.0/* /usr/share/nginx/html
+# EXPOSE 80
 
-EXPOSE 80
-
-CMD ["/usr/local/bin/run"]
+# CMD ["/usr/local/bin/run"]
