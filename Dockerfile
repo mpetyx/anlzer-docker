@@ -79,7 +79,7 @@ EXPOSE 9200
 EXPOSE 9300
 
 ### Installing Kibana 
-FROM nginx:1.7
+# Should a variation of specific nginx  be installed, 1.7 is the proposed
 
 ADD https://download.elasticsearch.org/kibana/kibana/kibana-3.1.0.tar.gz /tmp/kibana.tar.gz
 ADD run.sh /usr/local/bin/run
