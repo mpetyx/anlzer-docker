@@ -1,10 +1,5 @@
-# Install Couchbase Server Community Edition node
-# (version as per CB_VERSION variable specified below)
-# Based in part on based on work by Dustin Sallings (thank you!):
-# https://gist.github.com/dustin/6605182
-
 FROM ubuntu
-MAINTAINER Brian Shumate, brian@couchbase.com
+MAINTAINER Michael Petychakis, mpetyx@gmail.com
 
 ENV CB_VERSION 2.2.0
 ENV CB_BASE_URL http://packages.couchbase.com/releases
@@ -51,6 +46,28 @@ RUN chmod 755 /usr/local/sbin/couchbase
 EXPOSE 7081 8092 11210
 
 CMD /usr/local/sbin/couchbase
+
+# Install Nginx.
+RUN \
+  add-apt-repository -y ppa:nginx/stable && \
+  apt-get update && \
+  apt-get install -y nginx && \
+  rm -rf /var/lib/apt/lists/* && \
+  echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
+  chown -R www-data:www-data /var/lib/nginx
+
+# Define mountable directories.
+VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
+
+# Define working directory.
+WORKDIR /etc/nginx
+
+# Define default command.
+CMD ["nginx"]
+
+# Expose ports.
+EXPOSE 80
+EXPOSE 443
 
 ### Installing Elasticsearch 0.90.2
 RUN sudo aptitude install openjdk-7-jre-headless
