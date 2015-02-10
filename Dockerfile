@@ -70,7 +70,7 @@ EXPOSE 80
 EXPOSE 443
 
 ### Installing Elasticsearch 0.90.2
-RUN sudo aptitude install openjdk-7-jre-headless
+RUN sudo apt-get install openjdk-7-jre-headless
 RUN wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.2.deb
 RUN sudo dpkg -i elasticsearch
 
