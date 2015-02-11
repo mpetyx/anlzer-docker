@@ -117,3 +117,20 @@ VOLUME ["/var/lib/mysql"]
 VOLUME ["/run/mysqld"]
 
 CMD ["/start"]
+
+
+### Install anlzer dependencies 
+
+# Setting up the python environment
+RUN apt-get update
+RUN apt-get install -y python-pip
+RUN apt-get install -y git
+RUN apt-get install -y libpq-dev python-dev
+RUN git clone https://github.com/mpetyx/fitman.git /fitman
+#RUN pip install virtualenv
+#RUN virtualenv --no-site-packages venv
+#RUN /bin/bash/source venv/bin/activate
+RUN pip install -r /fitman/UIapp/requirements.txt
+
+EXPOSE 8000
+
