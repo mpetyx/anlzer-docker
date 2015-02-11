@@ -4,9 +4,12 @@ tar -xzf /tmp/es.tgz -C /opt/
 mv /opt/elasticsearch-1.3.4 /opt/elasticsearch
 mkdir -p /etc/service/elasticsearch
 
-echo "# Install kopf and head plugin"
+echo "# Install kopf, kibana3, transport head plugin"
 /opt/elasticsearch/bin/plugin -install lmenezes/elasticsearch-kopf
 /opt/elasticsearch/bin/plugin -install mobz/elasticsearch-head
+/opt/elasticsearch/bin/plugin -install elasticsearch/kibana3
+/opt/elasticsearch/bin/plugin -install transport-couchbase \
+-url http://packages.couchbase.com.s3.amazonaws.com/releases/elastic-search-adapter/1.3.0/elasticsearch-transport-couchbase-1.3.0.zip
 
 echo "# Disable multicast and dynamic scripting"
 sed -i 's/#discovery.zen.ping.multicast.enabled: false/discovery.zen.ping.multicast.enabled: false/g' /opt/elasticsearch/config/elasticsearch.yml
